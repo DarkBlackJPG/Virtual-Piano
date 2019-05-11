@@ -21,7 +21,7 @@ void BMPFormatter::format()
 	int counter = 0;
 	for (int x = 0; x < height; x++) {
 		for (int y = 0; y < width; y++) {
-			if (counter < leftHandNotes.size()) {
+			if ((unsigned)counter < leftHandNotes.size()) {
 				RGBdat rgbDat(0,0,0);
 				Duration::EDuration dur = Duration::EIGHT;
 

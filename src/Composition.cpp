@@ -57,6 +57,7 @@ bool Composition::initializeFile()
 
 		parseData(fileData);
 	}
+	return true;
 }
 
 void Composition::setTimeSignature(std::pair<int, int> time)
@@ -103,7 +104,7 @@ void Composition::parseData(std::string & data)
 			std::smatch match;
 			std::string a = regexMatch.str(2);
 			if (std::regex_search(a, match, spacePattern) || a.length() == 3) {
-				for (int i = 1; i < a.length(); i += 2) {
+				for (unsigned int i = 1; i < a.length(); i += 2) {
 					Note* newNote = new Note(Note::notesMap[regexMatch.str(2)[i]].first, Note::notesMap[regexMatch.str(2)[i]].second, Duration::EIGHT);
 					if (newNote->getOctave() <= 3) {
 						leftHand->addNote(newNote);
@@ -117,7 +118,7 @@ void Composition::parseData(std::string & data)
 			}
 			else {
 				Chord* rightHandChord = new Chord(Duration::QUARTER), *leftHandChord = new Chord(Duration::QUARTER);
-				for (int i = 1; i < a.length() - 1; i ++) {
+				for (unsigned int i = 1; i < a.length() - 1; i ++) {
 					Note* newNote = new Note(Note::notesMap[regexMatch.str(2)[i]].first, Note::notesMap[regexMatch.str(2)[i]].second, Duration::QUARTER);
 					if (newNote->getOctave() <= 3) {
 						leftHandChord->addNote(newNote);

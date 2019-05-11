@@ -2,7 +2,7 @@
 class Duration
 {
 public:
-	static enum EDuration {
+	enum EDuration {
 		QUARTER = 4,
 		EIGHT = 8
 	};

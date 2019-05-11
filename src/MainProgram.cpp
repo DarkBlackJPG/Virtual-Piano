@@ -13,7 +13,7 @@ void compositionManipulationFunction(Composition*);
 void exportFunction(Composition* composition);
 
 
-void main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 	getNotes();
 	Composition* myComposition = new Composition();
 	std::cout << "Uspesno ucitane note" << std::endl << std::endl;
@@ -48,4 +48,5 @@ void main(int argc, char *argv[]) {
 	} while (choice);
 
 	system("pause");
+	return 0;
 }

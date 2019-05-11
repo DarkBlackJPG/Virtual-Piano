@@ -79,10 +79,6 @@ void calculateRGBValues() {
 			}
 		}
 	}
-	/*std::cout << std::setw(6) << "R" << std::setw(6) << "G" << std::setw(6) << "B" << std::endl;
-	for (auto a : BMPFormatter::rgbDataMap) {
-		std::cout << std::setw(6) << (int)a.second.R << std::setw(6) << (int)a.second.G << std::setw(6) <<(int) a.second.B << std::setw(6) << a.first << std::endl;
-	}*/
 }
 
 void getNotes() {
@@ -354,6 +350,14 @@ void changeTimeSignature(Composition* cc) {
 	std::cout << "Uspesno zamenjen potpis" << std::endl;
 	cc->getLeftHand()->importAllNotes(leftHandSymbols);
 	cc->getRightHand()->importAllNotes(rightHandSymbols);
+	while (!cc->getLeftHand()->lastMeasureFull() && !cc->getRightHand()->lastMeasureFull()) {
+		cc->getLeftHand()->addNote(new Pause(Duration::EIGHT));
+		cc->getRightHand()->addNote(new Pause(Duration::EIGHT));
+	}
+	while (!cc->getLeftHand()->lastMeasureHasNotes() && !cc->getRightHand()->lastMeasureHasNotes()) {
+		cc->getRightHand()->killBack();
+		cc->getLeftHand()->killBack();
+	}
 }
 void shiftOctave(Composition* cc) {
 	std::vector<MusicSymbol*> rightHandSymbols;

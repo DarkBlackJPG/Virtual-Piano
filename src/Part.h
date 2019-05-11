@@ -7,7 +7,7 @@
 class Part
 {
 public:
-	static enum Type {
+	enum Type {
 		RIGHTHAND,
 		LEFTHAND
 	};
@@ -27,7 +27,10 @@ public:
 			delete a;
 		measure.clear();
 	}
+	bool lastMeasureHasNotes();
+	bool lastMeasureFull();
 	std::list<Measure*> getMeasures() { return measure; }
+	void killBack() { measure.pop_back(); }
 private:
 	std::list<Measure*> measure;
 	Type handType;

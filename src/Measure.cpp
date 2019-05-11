@@ -77,7 +77,7 @@ bool Measure::measureFull()
 }
 MusicSymbol * Measure::getSymbolAt(int index)
 {
-	if (index >= 0 && index < notes.size()) {
+	if ((unsigned)index >= 0 && (unsigned)index < notes.size()) {
 		std::list<MusicSymbol*>::iterator iterator = notes.begin();
 		std::advance(iterator, index);
 		return *iterator;

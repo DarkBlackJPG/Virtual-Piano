@@ -1,16 +1,12 @@
 #include "Part.h"
-
+#include "Pause.h"
 Part::Part(Part::Type type) : handType(type)
-{
-}
-
-Part::~Part()
 {
 }
 
 Measure * Part::getMeasureAt(int index)
 {
-	if (index < 0 || index >= measure.size())
+	if ((unsigned)index < 0 || (unsigned)index >= measure.size())
 		throw "Index out of range";
 	std::list<Measure*>::iterator it = measure.begin();
 	std::advance(it, index);
@@ -75,4 +71,24 @@ void Part::importAllNotes(std::vector<MusicSymbol*> symbols)
 	for (auto a : symbols) {
 		addNote(a);
 	}
+}
+
+bool Part::lastMeasureHasNotes()
+{
+	Measure* last = measure.back();
+	bool hasNotes = false;
+	for (auto var : last->getNotes()) {
+		if (dynamic_cast<Pause*>(var) == nullptr)
+		{
+			hasNotes = true;
+			break;
+		}
+	}
+	return hasNotes;
+}
+
+bool Part::lastMeasureFull()
+{
+	double count = 0;
+	return measure.back()->measureFull();
 }

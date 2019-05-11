@@ -4,7 +4,7 @@
 
 Note * Chord::getNoteAt(int i)
 {
-	if (i >= notes.size())
+	if ((unsigned)i >= notes.size())
 		return nullptr;
 	std::list<Note*>::iterator iterator = notes.begin();
 	std::advance(iterator, i);
@@ -50,7 +50,7 @@ Chord::Chord(Duration::EDuration duration) : MusicSymbol(duration)
 std::string Chord::generateMUSICXMLData(bool noteIsSplit, bool noteIsSecond)
 {
 	std::string data = "";
-	for (int i = 0;
+	for (unsigned int i = 0;
 		i < notes.size();
 		i++) {
 		
