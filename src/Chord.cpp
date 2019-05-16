@@ -1,6 +1,8 @@
 #include "Chord.h"
 #include <vector>
 
+void toUpper(std::string&);
+void toLower(std::string&);
 
 Note * Chord::getNoteAt(int i)
 {
@@ -53,11 +55,12 @@ std::string Chord::generateMUSICXMLData(bool noteIsSplit, bool noteIsSecond)
 	for (unsigned int i = 0;
 		i < notes.size();
 		i++) {
-		
+		std::string cc = getNoteAt(i)->getStep();
+		toUpper(cc);
 		data +=
 			"<note>" + std::string(i != 0 ? "\n<chord/>" : "") + "\n"
 			"<pitch>\n"
-			"<step>" + getNoteAt(i)->getStep() + "</step>\n"
+			"<step>" + cc + "</step>\n"
 			"<octave>" + std::to_string(getNoteAt(i)->getOctave()) + "</octave>\n"
 			+ ((getNoteAt(i)->isIncreased() == true) ? "<alter>1</alter>\n" : "") +
 			"</pitch>\n"

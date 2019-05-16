@@ -2,7 +2,8 @@
 #include <regex>
 #include <iostream>
 #include <sstream>
-void toUpper(std::string& string);
+void toUpper(std::string&);
+void toLower(std::string&);
 std::map<char, std::pair<std::string, int>> Note::notesMap;
 std::map<std::string, int> Note::octaveChangeMap;
 std::map<int, std::string> Note::midiMap;
